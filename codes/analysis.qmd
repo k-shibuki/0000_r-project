@@ -17,7 +17,7 @@ format:
     mainfont: Helvetica Neue, Helvetica, Hiragino Sans,  
               Hiragino Kaku Gothic ProN, Arial, Yu Gothic Medium,  
               Meiryo, sans-serif
-bibliography: "./templates/2203_test.bib"
+bibliography: "./templates/0000_r-project.bib"
 csl: "./templates/sage-vancouver.csl"
 extract-media: "./figures"
 ---
