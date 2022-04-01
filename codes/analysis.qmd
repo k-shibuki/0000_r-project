@@ -51,9 +51,9 @@ renv::snapshot(prompt = FALSE)
 
 ```{r}
 #| label: load_datasets
-#| cache.extra: tools::md5sum("datasets/01_endpoint.csv")
+#| cache.extra: tools::md5sum("datasets/01_bcg.csv")
 
-dat <- read.csv("datasets/01_endpoint.csv")
+dat <- read.csv("datasets/01_bcg.csv")
 dat
 ```
 
