@@ -87,6 +87,6 @@ This configuration is written to the `.gitconfig` file in `dotfiles`.
 #### Setting up SSH private key
 Store the SSH private key for connecting to GitHub on the Docker host machine. Specify the file path of the private key (e.g. `~/.ssh/id_ed25519`) in the `GITHUB_SSH_IDENTITY` environment variable in `.env` to mount the private key in the container and allow SSH connections to GitHub from inside the container.
 
-### path to mount your project.
+### Path to the mount location for your project
 By default, this project folder is mounted in `/home/rstudio/project` in the container.
 You can change the path to the mount location with the `.env` environment variable `PROJECT_PATH_CONTAINER`.
