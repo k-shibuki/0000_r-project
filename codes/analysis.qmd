@@ -1,0 +1,64 @@
+---
+title: "Analysis report"
+subtitle: "This report was rendered on `r Sys.time() ` ."
+author: "Katsuya Shibuki"
+format: 
+  html: 
+    toc: true
+    number-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    fig-format: svg
+    theme: darkly
+    self-contained: true
+    code-tools: true
+    link-external-icon: true
+    link-external-newwindow: true
+    mainfont: Helvetica Neue, Helvetica, Hiragino Sans,  
+              Hiragino Kaku Gothic ProN, Arial, Yu Gothic Medium,  
+              Meiryo, sans-serif
+bibliography: "./templates/2203_test.bib"
+csl: "./templates/sage-vancouver.csl"
+extract-media: "./figures"
+---
+
+# Introduction
+## Background
+
+```{r}
+#| label: setup
+#| include: false
+
+renv::restore(prompt = FALSE)
+
+```
+
+```{r}
+#| label: load_packages
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(knitr, metafor, kableExtra, ggplot2)
+
+```
+
+```{r}
+#| label: snapshot
+#| include: false
+
+renv::snapshot(prompt = FALSE)
+
+```
+
+```{r}
+#| label: load_datasets
+#| cache.extra: tools::md5sum("datasets/01_endpoint.csv")
+
+dat <- read.csv("datasets/01_endpoint.csv")
+dat
+```
+
+```{r}
+#| label: remove_all
+
+rm(list = ls())
+```
