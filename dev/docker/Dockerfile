@@ -1,5 +1,7 @@
 FROM rocker/rstudio:4.1.3
 
+ENV MRAN_SNAPSHOT_DATE=2022-03-23
+
 # Install apt packages (including Japanese fonts)
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -10,6 +12,14 @@ RUN apt-get update \
      fonts-ipaexfont \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+# Install R packages
+RUN install2.r -e -s \
+  -n -1 \
+  -r https://mran.microsoft.com/snapshot/${MRAN_SNAPSHOT_DATE} \
+     renv \
+     rmarkdown \
+  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # Create directories for renv package cache and renv library root
 # Add github.com to known_hosts in SSH
