@@ -1,7 +1,7 @@
 ---
 title: "Analysis report"
-subtitle: "This report was rendered on `r Sys.time() ` ."
-author: "Katsuya Shibuki"
+subtitle: "This report was rendered on `r Sys.time() `."
+author: "Your Name"
 format: 
   html: 
     toc: true
@@ -9,7 +9,8 @@ format:
     fig-cap-location: bottom
     tbl-cap-location: top
     fig-format: svg
-    theme: darkly
+    fig-width: 12
+    theme: sandstone
     self-contained: true
     code-tools: true
     link-external-icon: true
@@ -53,8 +54,10 @@ renv::snapshot(prompt = FALSE)
 #| label: load_datasets
 #| cache.extra: tools::md5sum("datasets/01_bcg.csv")
 
-dat <- read.csv("datasets/01_bcg.csv")
-dat
+dat_01 <- read.csv("datasets/01_bcg.csv", na.strings = c("", "NULL"))
+
+dat_01 |> kbl() |> 
+  kable_classic(full_width = FALSE, html_font = "Times New Roman", font_size = 10)
 ```
 
 ```{r}
