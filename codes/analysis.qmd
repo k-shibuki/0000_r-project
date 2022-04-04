@@ -28,25 +28,13 @@ extract-media: "./figures"
 
 ```{r}
 #| label: setup
-#| include: false
 
-renv::restore(prompt = FALSE)
+library(checkpoint)
+checkpoint("2022-04-01", checkpoint_location = "../")
 
-```
 
-```{r}
-#| label: load_packages
-
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(knitr, metafor, kableExtra, ggplot2)
-
-```
-
-```{r}
-#| label: snapshot
-#| include: false
-
-renv::snapshot(prompt = FALSE)
+library(pacman)
+pacman::p_load(rmarkdown, knitr, kableExtra, tidyverse, metafor, robvis)
 
 ```
 
@@ -54,14 +42,17 @@ renv::snapshot(prompt = FALSE)
 #| label: load_datasets
 #| cache.extra: tools::md5sum("datasets/01_bcg.csv")
 
-dat_01 <- read.csv("datasets/01_bcg.csv", na.strings = c("", "NULL"))
+df_01 <- read.csv("datasets/01_bcg.csv", na.strings = c("", "NULL"))
 
-dat_01 |> kbl() |> 
+df_01 |> kbl() |> 
   kable_classic(full_width = FALSE, html_font = "Times New Roman", font_size = 10)
 ```
 
 ```{r}
-#| label: remove_all
+#| label: terminate
 
 rm(list = ls())
+
+uncheckpoint()
+
 ```

@@ -7,9 +7,7 @@ services:
       - TZ=${LOCAL_TZ}
       - PASSWORD=password
       - DISABLE_AUTH=true
-      - RENV_PATHS_CACHE=/home/rstudio/.local/share/renv/cache
     volumes:
       - .:${PROJECT_PATH_CONTAINER:-/home/rstudio/project}
       - ${DOTFILES_ROOT:-./dev/dotfiles}:/home/rstudio/dotfiles
-      - ${RENV_PATHS_CACHE_HOST:-./dev/renv/cache}:/home/rstudio/.local/share/renv/cache
       - ${GITHUB_SSH_IDENTITY:-/dev/null}:/home/rstudio/.ssh/id_github:ro
