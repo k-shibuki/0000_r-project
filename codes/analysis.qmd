@@ -1,51 +1,62 @@
 ---
 title: "Analysis report"
-subtitle: "This report was rendered on `r Sys.time() `."
+subtitle: " `r Sys.time() ` "
 author: "Your Name"
 format: 
   html: 
     toc: true
     number-sections: true
-    fig-cap-location: bottom
-    tbl-cap-location: top
-    fig-format: svg
-    fig-width: 12
-    theme: sandstone
+    theme: simplex
+    backgroundcolor: "#e3e3e3"
+    monobackgroundcolor: "#ffffff"
+    highlight-style: solarized
+    code-block-bg: "#dcd6d2"
+    mainfont: Times New Roman, YuMincho, Hiragino Mincho ProN, Yu Mincho,  
+              MS PMincho, serif;
+    linestretch: "2.5"
     self-contained: true
     code-tools: true
+    code-fold: true
     link-external-icon: true
     link-external-newwindow: true
-    mainfont: Helvetica Neue, Helvetica, Hiragino Sans,  
-              Hiragino Kaku Gothic ProN, Arial, Yu Gothic Medium,  
-              Meiryo, sans-serif
+    fig-format: svg
+    fig-width: 10
+extract-media: "./figures"
 bibliography: "./templates/0000_r-project.bib"
 csl: "./templates/sage-vancouver.csl"
-extract-media: "./figures"
 ---
+This report contains the analysis code and results for the following research article: 
 
-# Introduction
-## Background
+> ....................
+
+# Materials and Methods
+## Guidelines
+
+## Data analysis
 
 ```{r}
 #| label: setup
+#| code-fold: false
 
+# attach the package 'checkpoint'
 library(checkpoint)
-checkpoint("2022-04-01", checkpoint_location = "../")
 
+# set checkpoint date
+checkpoint("2022-04-01", checkpoint_location = "../", scan_now = FALSE)
 
+# attach packages
 library(pacman)
-pacman::p_load(rmarkdown, knitr, kableExtra, tidyverse, metafor, robvis)
+pacman::p_load(kableExtra, tidyverse, metafor, robvis)
 
-```
+# define binary operators for combine strings
+"%cs%" <- function(x, y) paste0(x, y)
 
-```{r}
-#| label: load_datasets
-#| cache.extra: tools::md5sum("datasets/01_bcg.csv")
+# save default graphics parameters
+oldpar <- par(no.readonly = TRUE) 
 
+# load data sets
 df_01 <- read.csv("datasets/01_bcg.csv", na.strings = c("", "NULL"))
 
-df_01 |> kbl() |> 
-  kable_classic(full_width = FALSE, html_font = "Times New Roman", font_size = 10)
 ```
 
 ```{r}
