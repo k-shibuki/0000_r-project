@@ -4,10 +4,17 @@ services:
     ports:
       - "8787:8787"
     environment:
-      - TZ=${LOCAL_TZ}
+      - TZ=${LOCAL_TZ:-UTC}
       - PASSWORD=password
       - DISABLE_AUTH=true
     volumes:
-      - .:${PROJECT_PATH_CONTAINER:-/home/rstudio/project}
-      - ${DOTFILES_ROOT:-./dev/dotfiles}:/home/rstudio/dotfiles
-      - ${GITHUB_SSH_IDENTITY:-/dev/null}:/home/rstudio/.ssh/id_github:ro
+      - type: bind
+        source: "."
+        target: "/home/rstudio/project"
+      - type: bind
+        source: "${DOTFILES_ROOT:-./dev/dotfiles}"
+        target: "/home/rstudio/dotfiles"
+      - type: bind
+        source: "${GITHUB_SSH_IDENTITY:-/dev/null}"
+        target: "/home/rstudio/.ssh/id_github"
+        read_only: true

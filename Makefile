@@ -24,8 +24,12 @@ start: ## (re-)start stopped containers ## docker compose start
 	@docker compose start
 
 .PHONY: ps
-ps: ##  list containers for the compose-project ## docker compose ps
+ps: ## list containers for the compose-project ## docker compose ps
 	@docker compose ps
+
+.PHONY: prune
+prune: ## delete unused Docker objects ## docker system prune -f
+	@docker system prune -f
 
 .PHONY: bash
 bash: ## start bash in the rstudio container ## docker compose exec rstudio /bin/bash

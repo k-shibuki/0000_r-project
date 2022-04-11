@@ -6,6 +6,3 @@ options(
   showWarnCalls = TRUE, 
   showErrorCalls = TRUE
 )
-
-library(checkpoint)
-library(pacman)

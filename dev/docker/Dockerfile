@@ -21,7 +21,7 @@ RUN install2.r -e -s -n -1 \
 
 # Add github.com to known_hosts in SSH
 RUN mkdir -p /home/rstudio/.ssh \
-  && ssh-keyscan -t ed25519 github.com > /home/rstudio/.ssh/known_hosts \
+  && ssh-keyscan -t rsa, ed25519 github.com > /home/rstudio/.ssh/known_hosts \
   && chown -R rstudio:rstudio /home/rstudio \
   && chmod 700 /home/rstudio/.ssh
 
